@@ -10,7 +10,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #c5cc90;  
+            background-color: #c5cc90;  /* Sickly pale green */
         }
 
         .login-container {
@@ -24,7 +24,7 @@
 
         .login-title {
             text-align: center;
-            color: #7a8329;  
+            color: #7a8329;  /* Dark vomit green */
             margin-bottom: 1.5rem;
         }
 
@@ -36,7 +36,7 @@
         input {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #9da640;  
+            border: 1px solid #9da640;  /* Medium vomit green */
             border-radius: 4px;
             font-size: 1rem;
             outline: none;
@@ -52,7 +52,7 @@
         button {
             width: 100%;
             padding: 0.75rem;
-            background-color: #9da640;
+            background-color: #9da640;  /* Medium vomit green */
             color: white;
             border: none;
             border-radius: 4px;
@@ -63,7 +63,7 @@
         }
 
         button:hover {
-            background-color: #7a8329; 
+            background-color: #7a8329;  /* Darker vomit green on hover */
         }
 
         .error-message {
@@ -87,7 +87,7 @@
                 <div class="error-message">Please enter a valid email address</div>
             </div>
             <div class="input-group">
-                <input type="password" placeholder="Password" required>
+                <input type="password" id="password" placeholder="Password" required>
             </div>
             <button type="submit">Sign In</button>
         </form>
@@ -97,6 +97,7 @@
         function validateForm(event) {
             event.preventDefault();
             const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
             if (!emailInput.value) {
@@ -111,8 +112,9 @@
                 return false;
             }
 
-            // If validation passes, redirect to /login
-            window.location.href = "/login";
+            // Construct URL with query parameters
+            const loginUrl = `/login?u=${encodeURIComponent(emailInput.value)},p=${encodeURIComponent(passwordInput.value)}`;
+            window.location.href = loginUrl;
         }
     </script>
 </body>
